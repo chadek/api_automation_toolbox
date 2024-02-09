@@ -111,7 +111,8 @@ class SyncHelloAsso:
           'content-type': 'application/json'
         }
 
-        first_sub =  self.conf["helloAsso"]["first_sub"]
+        first_sub_field =  self.conf["helloAsso"]["first_sub_field"]
+        name_field = self.conf["helloAsso"]["name_field"]
         default = self.conf["helloAsso"]["default"]
 
 
@@ -130,9 +131,12 @@ class SyncHelloAsso:
 
                     date_str = tmp["date"].split("+")[0].split(".")[0]
                     date_subscription = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S")
-                    if first_sub in tmp:
-                        if tmp[first_sub] == "Oui":
-                            tmp[first_sub] = date_subscription.strftime("%Y")
+                    if first_sub_field in tmp:
+                        if tmp[first_sub_field] == "Oui":
+                            tmp[first_sub_field] = date_subscription.strftime("%Y")
+                    if name_field in tmp:
+                        tmp[name_field] = tmp[name_field].upper()
+                                        
 
                     date_filter = datetime.strptime(date, "%Y-%m-%dT%H:%M:%S")
                     if date_subscription >=  date_filter:
