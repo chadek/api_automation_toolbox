@@ -32,7 +32,7 @@ jobs:
 
       - name: Lint code.
         run: |
-          pylint .
+          pylint .*.py
 
   # test:
   #   name: Test
