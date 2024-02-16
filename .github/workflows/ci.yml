@@ -28,7 +28,7 @@ jobs:
           python-version: "3.x"
 
       - name: Install test dependencies.
-        run: pip3 install pylint
+        run: pip3 install pylint ovh request
 
       - name: Lint code.
         run: |
