@@ -64,7 +64,7 @@ class SyncHelloAsso:
                 syslog.LOG_ERR,
                 "Something went wrong while authenticating to helloasso: {}".format(e),
             )
-            sys.exit(-1)
+            raise e
 
     def get_form_details(self, name):
         """Find formular detail usig formular name (needed to get
