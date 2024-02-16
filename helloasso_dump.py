@@ -135,17 +135,7 @@ class SyncHelloAsso:
         to airtable if subscription was made after "subscription_after" variable value
         """
         users = []
-<<<<<<< Updated upstream
-        headers = {
-          'content-type': 'application/json'
-        }
-
-        first_sub =  self.conf["helloAsso"]["first_sub"]
-        default = self.conf["helloAsso"]["default"]
-
-=======
         headers = {"content-type": "application/json"}
->>>>>>> Stashed changes
 
         for item in data:
             if item["state"] == "Processed":
@@ -168,11 +158,6 @@ class SyncHelloAsso:
 
                     date_str = tmp["date"].split("+")[0].split(".")[0]
                     date_subscription = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S")
-<<<<<<< Updated upstream
-                    if first_sub in tmp:
-                        if tmp[first_sub] == "Oui":
-                            tmp[first_sub] = date_subscription.strftime("%Y")
-=======
                     if self.conf["helloAsso"]["first_sub_field"] in tmp:
                         if tmp[self.conf["helloAsso"]["first_sub_field"]] == "Oui":
                             tmp[self.conf["helloAsso"]["first_sub_field"]] = (
@@ -182,7 +167,6 @@ class SyncHelloAsso:
                         tmp[self.conf["helloAsso"]["name_field"]] = tmp[
                             self.conf["helloAsso"]["name_field"]
                         ].upper()
->>>>>>> Stashed changes
 
                     date_filter = datetime.strptime(date, "%Y-%m-%dT%H:%M:%S")
                     if date_subscription >= date_filter:
