@@ -32,7 +32,8 @@ jobs:
         run: tar -zcvf ${{ env.APP_NAME }}.tar.gz ${{ env.APP_NAME }}.py 
 
       - name: Store sha256 checksum
-        run: sha256sum ${{ env.APP_NAME }}.tar.gz | awk '{print $1}' >> "$APP_CHECKSUM"
+        id: sha256
+        run: sha256sum ${{ env.APP_NAME }}.tar.gz | awk '{print $1}'
 
       - name: Upload app tarball to release
         uses: svenstaro/upload-release-action@latest
@@ -66,4 +67,4 @@ jobs:
           # Optional, additional flags to pass to ansible-playbook
           options: >-
             --extra-vars deploy_archive_src={ url:${{ steps.attach_to_release.outputs.browser_download_url }},
-            archive_name: ${{ env.APP_NAME }}.tar.gz }
+            archive_name: ${{ env.APP_NAME }}.tar.gz, checksum: ${{ steps.version.outputs }}  }
