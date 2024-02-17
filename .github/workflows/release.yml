@@ -49,7 +49,7 @@ jobs:
         run: pip3 install ansible-core
 
       - name: Import Ansible role.
-        run: ansible-galaxy role install ${{ vars.DEPLOYEMENT_ROLE }}
+        run: ansible-galaxy role install chadek.deploy_archive
 
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2
