@@ -49,9 +49,6 @@ jobs:
       - name: Import Ansible role.
         run: ansible-galaxy role install ${{ vars.DEPLOYEMENT_ROLE }}
 
-      - name: Generate playbook
-        run: echo ""
-
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2
         with:
