@@ -53,7 +53,7 @@ jobs:
 
       - name: Generate ansibl-playbook
         run: |
-          cat ./${{ env.APP_NAME }}/deploy.yml << EOF
+          cat >./${{ env.APP_NAME }}/deploy.yml << EOF
           ---
           - hosts: all
 
