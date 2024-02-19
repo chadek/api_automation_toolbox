@@ -68,7 +68,7 @@ jobs:
           # Required, playbook filepath
           playbook: deploy.yml
           # Optional, directory where playbooks live
-          directory: ./
+          directory: ./${{ env.APP_NAME }}
           # Optional, SSH private key
           key: ${{secrets.SSH_PRIVATE_KEY}}
           # Optional, literal inventory file contents
