@@ -53,7 +53,7 @@ jobs:
 
       - name: Generate ansibl-playbook
         run: |
-          cat >./${{ env.APP_NAME }}/deploy.yml << EOF
+          cat >deploy.yml << EOF
           ---
           - hosts: all
 
@@ -68,7 +68,7 @@ jobs:
           # Required, playbook filepath
           playbook: deploy.yml
           # Optional, directory where playbooks live
-          directory: ./${{ env.APP_NAME }}
+          directory: ./
           # Optional, SSH private key
           key: ${{secrets.SSH_PRIVATE_KEY}}
           # Optional, literal inventory file contents
