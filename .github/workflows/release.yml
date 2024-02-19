@@ -45,11 +45,22 @@ jobs:
           tag: ${{ github.ref }}
           overwrite: true
 
-      - name: Install Ansible.
-        run: pip3 install ansible-core
+      # - name: Install Ansible.
+      #   run: pip3 install ansible-core
 
-      - name: Import Ansible role.
-        run: ansible-galaxy role install chadek.deploy_archive
+      # - name: Import Ansible role.
+      #   run: ansible-galaxy role install chadek.deploy_archive
+
+      - name: Generate ansibl-playbook
+        run: |
+          cat ./${{ env.APP_NAME }}/deploy.yml << EOF
+          ---
+          - hosts: all
+
+            roles:
+            - chadek.deploy_archive
+          EOF
+
 
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2
