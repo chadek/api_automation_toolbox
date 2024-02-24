@@ -11,25 +11,25 @@ name: Release
     tags:
       - "*"
 env:
-  APP_NAME: helloasso_dump
+  APP_NAME: hello-asso-sync
 
 defaults:
   run:
-    working-directory: helloasso_dump
+    working-directory: hello-asso-sync
 
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    environment: release    
+    environment: release
     steps:
       - name: Check out the codebase.
         uses: actions/checkout@v4
         with:
-          path:  ${{ env.APP_NAME }}
+          path: ${{ env.APP_NAME }}
 
       - name: Compress asset
-        run: tar -zcvf ${{ env.APP_NAME }}.tar.gz ${{ env.APP_NAME }}.py 
+        run: tar -zcvf ${{ env.APP_NAME }}.tar.gz ${{ env.APP_NAME }}.py
 
       - name: Store sha256 checksum
         run: echo "SHA256=$(sha256sum ${{ env.APP_NAME }}.tar.gz | awk '{print $1}')" >> $GITHUB_OUTPUT
@@ -58,7 +58,6 @@ jobs:
             - chadek.deploy_archive
           EOF
 
-
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2
         with:
@@ -75,4 +74,4 @@ jobs:
           # Optional, additional flags to pass to ansible-playbook
           options: >-
             -e "{ deploy_archive_src: { url: ${{ steps.attach_to_release.outputs.browser_download_url }},
-            archive_name: ${{ env.APP_NAME }}.tar.gz, checksum: ${{ steps.sha256.outputs.SHA256 }}, permission: '0644' } }"
+            archive_name: ${{ env.APP_NAME }}.tar.gz, checksum: ${{ steps.sha256.outputs.SHA256 }} } }"
