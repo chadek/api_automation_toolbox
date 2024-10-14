@@ -10,7 +10,11 @@ name: CI
 
 defaults:
   run:
+<<<<<<< Updated upstream
     working-directory: "chadek.api_automation_toolbox"
+=======
+    working-directory: "hello_asso_sync"
+>>>>>>> Stashed changes
 
 jobs:
   lint:
@@ -20,7 +24,11 @@ jobs:
       - name: Check out the codebase.
         uses: actions/checkout@v4
         with:
+<<<<<<< Updated upstream
           path: "chadek.api_automation_toolbox"
+=======
+          path: "hello_asso_sync"
+>>>>>>> Stashed changes
 
       - name: Set up Python 3.
         uses: actions/setup-python@v5
